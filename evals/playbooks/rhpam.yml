@@ -1,0 +1,6 @@
+---
+- name: Setup Rhpam on OpenShift
+  hosts: local
+  gather_facts: no
+  roles:
+    - rhpam

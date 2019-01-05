@@ -97,7 +97,7 @@
         tasks_from: uninstall
       tags: ['fuse']
       when: fuse
-    -
+    - 
       name: Uninstall Walkthrough Apps
       include_role:
         name: walkthroughs
@@ -128,6 +128,14 @@
       name: Reboot template broker
       include_role:
         name: reboot_template_broker
+    -
+      name: Uninstall Rhpam
+      include_role:
+        name: rhpam
+        tasks_from: uninstall
+      tags: ['rhpam']
+      when: rhpam
+
 - hosts: master
   tasks:
     -

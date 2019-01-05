@@ -1,0 +1,14 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: rhpam-dev-operator
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - from:
+      kind: DockerImage
+      name: "{{ rhpam_operator_registry }}/{{ rhpam_operator_repository }}/rhpam-dev-operator:{{ rhpam_operator_image_tag }}"
+    importPolicy:
+      scheduled: true
+    name: "{{ rhpam_operator_image_version }}"

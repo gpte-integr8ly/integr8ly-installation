@@ -14,3 +14,9 @@
         name: fuse
       tags: ['fuse']
       when: fuse
+    - 
+      name: Setup Rhpam on OpenShift
+      include_role:
+        name: rhpam
+      tags: ['rhpam']
+      when: rhpam     

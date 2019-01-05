@@ -1,0 +1,16 @@
+---
+
+# SETUP RHPAM OPERATOR AND RHPAM ON OPENSHIFT IMAGES
+- name: Generate rhpam-dev operator image stream template
+  template:
+    src: "rhpam-dev-operator.yml.j2"
+    dest: /tmp/rhpam-dev-operator.yml
+
+- name: Create RHPAM image streams
+  shell: "oc replace --force -f {{ item }} -n openshift"
+  register: create_rhpam_imagestream_cmd
+  failed_when: create_rhpam_imagestream_cmd.stderr != '' and 'AlreadyExists' not in create_rhpam_imagestream_cmd.stderr
+  changed_when: create_rhpam_imagestream_cmd.rc == 0
+  with_items:
+    - "/tmp/rhpam-dev-operator.yml"
+    - "{{ rhpam_imagestreams_url }}"

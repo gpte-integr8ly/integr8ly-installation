@@ -1,0 +1,15 @@
+---
+
+# CLEANUP RHPAM OPERATOR IMAGE STREAMS
+- name: Generate rhpam-dev operator image stream template
+  template:
+    src: "rhpam-dev-operator.yml.j2"
+    dest: /tmp/rhpam-dev-operator.yml
+
+- name: Delete rhpam operator image streams
+  shell: "oc delete -f {{ item }} -n openshift"
+  register: delete_rhpam_imagestream_cmd
+  failed_when: delete_rhpam_imagestream_cmd.stderr != '' and 'NotFound' not in delete_rhpam_imagestream_cmd.stderr
+  changed_when: delete_rhpam_imagestream_cmd.rc == 0
+  with_items:
+    - "/tmp/rhpam-dev-operator.yml"
