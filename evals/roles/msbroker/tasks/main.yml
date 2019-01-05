@@ -65,6 +65,14 @@
     fuse_online_enabled: "false"
   when: not fuse_online
 
+- set_fact:
+    rhpam_enabled: "true"
+  when: rhpam
+
+- set_fact:
+    rhpam_enabled: "false"
+  when: not rhpam
+
 - name: Create managed service broker template in {{ msbroker_namespace }}
   shell: "oc process -n {{ msbroker_namespace }} \
   -f {{ msbroker_template_url }} \
@@ -75,6 +83,7 @@
   --param=THREESCALE_DASHBOARD_URL={{ threescale_dashboard_url }} \
   --param=APICURIO_DASHBOARD_URL={{ apicurito_dashboard_url }} \
   --param=FUSE_OPERATOR_RESOURCES_URL={{ msbroker_fuse_operator_resources_url }} \
+  --param=RHPAM_ENABLED={{ rhpam_enabled }} \
   --param=IMAGE_ORG={{ msbroker_image_org }} \
   --param=IMAGE_TAG={{ msbroker_image_tag }} \
   --param MONITORING_KEY={{ monitoring_key }} | oc create -n {{ msbroker_namespace }} -f -"
