@@ -3,4 +3,4 @@ rhpam_operator_registry: quay.io
 rhpam_operator_repository: btison
 rhpam_operator_image_tag: v0.0.2
 rhpam_operator_image_version: v0.0.2
-rhpam_imagestreams_url: https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.1.x/rhpam71-image-streams.yaml
+rhpam_imagestreams_url: https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.2.x/rhpam72-image-streams.yaml
