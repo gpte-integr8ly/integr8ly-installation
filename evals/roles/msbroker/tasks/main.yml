@@ -84,6 +84,8 @@
   --param=APICURIO_DASHBOARD_URL={{ apicurito_dashboard_url }} \
   --param=FUSE_OPERATOR_RESOURCES_URL={{ msbroker_fuse_operator_resources_url }} \
   --param=RHPAM_ENABLED={{ rhpam_enabled }} \
+  --param=SSO_NAMESPACE={{ eval_rhsso_namespace }} \
+  --param=SSO_ADMIN_CREDENTIALS_SECRET={{ eval_rhsso_credentials_secret }} \
   --param=IMAGE_ORG={{ msbroker_image_org }} \
   --param=IMAGE_TAG={{ msbroker_image_tag }} \
   --param MONITORING_KEY={{ monitoring_key }} | oc create -n {{ msbroker_namespace }} -f -"
